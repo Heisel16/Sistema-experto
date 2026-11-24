@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MovieExpert · Tu función ideal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Poppins:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#090504; --curtain:#8f0f17; --panel:#170d0b; --line:#3b201d; --text:#f7efe8; --muted:#bba99f;
+  --neon:#ff2a2a; --gold:#f5c56b; --paper:#f4e7cf; --ink:#2a1410;
+  --display:"Gloock",Georgia,serif; --body:"Poppins",system-ui,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.6 var(--body);overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Hero */
+.hero{position:relative;text-align:center;padding:3.5rem 1.25rem 4.5rem;
+  background:
+   radial-gradient(ellipse 60% 70% at 50% -10%,rgba(255,200,120,.35),transparent 65%),
+   linear-gradient(90deg,var(--curtain) 0,#5d0a10 7%,transparent 18%,transparent 82%,#5d0a10 93%,var(--curtain) 100%)}
+.marquee{position:relative;display:inline-block;padding:1.6rem clamp(1.2rem,6vw,3.5rem);border:2px solid var(--gold);border-radius:14px;
+  background:rgba(9,5,4,.72);box-shadow:0 0 40px rgba(255,42,42,.35)}
+.marquee::before,.marquee::after{content:"";position:absolute;left:10px;right:10px;height:12px;
+  background:radial-gradient(circle,var(--gold) 3px,transparent 4px) 0 0/20px 12px repeat-x;animation:bulbs 1.4s steps(1) infinite}
+.marquee::before{top:-7px}.marquee::after{bottom:-7px;animation-delay:.7s}
+@keyframes bulbs{0%{opacity:1}50%{opacity:.25}}
+h1{font:400 clamp(2.8rem,12vw,6.5rem)/1 var(--display);margin:0;color:var(--neon);
+  text-shadow:0 0 14px rgba(255,42,42,.9),0 0 50px rgba(255,42,42,.5)}
+.lead{max-width:44ch;margin:1.5rem auto 0;color:var(--text);font-size:1.1rem}
+.cta{margin-top:1.75rem;background:var(--neon);color:#1b0505;border:0;border-radius:999px;padding:.85rem 2.2rem;font-weight:600;font-size:1.05rem;
+  box-shadow:0 0 28px rgba(255,42,42,.55);transition:transform .15s}
+.cta:hover{transform:scale(1.04)}
+
+main{max-width:980px;margin:0 auto;padding:0 1.25rem 3rem}
+h2{font:400 clamp(1.6rem,5vw,2.3rem)/1.15 var(--display);margin:0 0 .4rem}
+.hint{color:var(--muted);margin:0 0 1.5rem}
+
+/* Sala (asistente) */
+.sala{margin-top:-2.2rem;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(1.25rem,4vw,2.25rem)}
+.dots{display:flex;gap:.5rem;margin-bottom:1.25rem}
+.dots i{width:2.2rem;height:5px;border-radius:3px;background:var(--line)}
+.dots i.on{background:var(--neon);box-shadow:0 0 10px var(--neon)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.9rem}
+.tile{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.3rem .75rem;background:#0f0807;border:1px solid var(--line);border-radius:16px;
+  font-weight:500;transition:transform .15s,border-color .15s,background .15s}
+.tile span{font-size:2.2rem;line-height:1}
+.tile:hover{transform:translateY(-4px);border-color:var(--neon);background:#1d0e0c}
+.back{margin-top:1.25rem;background:none;border:0;color:var(--muted);text-decoration:underline;padding:0}
+
+/* Proyector */
+.proy{display:grid;place-items:center;min-height:260px;text-align:center}
+.count{width:150px;height:150px;border-radius:50%;border:4px solid var(--gold);display:grid;place-items:center;
+  font:400 5rem/1 var(--display);color:var(--gold);box-shadow:0 0 0 10px rgba(245,197,107,.15),0 0 40px rgba(245,197,107,.4)}
+.proy p{margin:1rem 0 0;color:var(--muted)}
+
+/* Entrada */
+.ticket{display:grid;grid-template-columns:minmax(150px,.8fr) 1.6fr;background:var(--paper);color:var(--ink);border-radius:18px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(255,42,42,.25);animation:flash .9s ease-out}
+@keyframes flash{0%{filter:brightness(3);transform:scale(.96);opacity:0}40%{opacity:1}100%{filter:none;transform:none}}
+.poster{display:flex;align-items:flex-end;padding:1rem;min-height:240px;font:400 1.7rem/1.05 var(--display);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.info{padding:1.4rem 1.5rem;border-left:3px dotted rgba(42,20,16,.45)}
+.info .k{margin:0;font-size:.9rem;color:#6d4b41}
+.info .m{font:400 clamp(1.9rem,6vw,2.9rem)/1.05 var(--display);margin:.2rem 0 .8rem}
+.chain{display:flex;flex-wrap:wrap;gap:.45rem;margin:.9rem 0 1.1rem}
+.chain b{font-weight:500;font-size:.85rem;background:var(--ink);color:var(--paper);padding:.3rem .8rem;border-radius:999px}
+.chain em{font-style:normal;align-self:center}
+.again{background:var(--neon);color:#1b0505;border:0;border-radius:999px;padding:.6rem 1.5rem;font-weight:600}
+.empty{padding:1.5rem;text-align:center;background:#0f0807;border:1px dashed var(--muted);border-radius:16px}
+.empty .m{font:400 2rem/1.1 var(--display);margin:0 0 .5rem}
+
+/* Cartelera */
+.cartelera{margin-top:3.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
+.card{border-radius:14px;overflow:hidden;background:var(--panel);border:2px solid transparent;transition:opacity .3s,transform .3s,border-color .3s}
+.card .p{aspect-ratio:2/3;display:flex;align-items:flex-end;padding:.8rem;font:400 1.25rem/1.05 var(--display);text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.card small{display:block;padding:.6rem .8rem;color:var(--muted)}
+.cartelera.has .card{opacity:.35}
+.cartelera.has .card.hit{opacity:1;border-color:var(--gold);transform:translateY(-6px);box-shadow:0 0 30px rgba(245,197,107,.45)}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding:2rem 1.25rem 3rem;border-top:1px solid var(--line)}
+
+@media (max-width:560px){.ticket{grid-template-columns:1fr}.info{border-left:0;border-top:3px dotted rgba(42,20,16,.45)}.poster{min-height:150px}}
+@media (prefers-reduced-motion:reduce){.marquee::before,.marquee::after{animation:none}.ticket{animation:none}.tile,.cta,.card{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="marquee"><h1>MovieExpert</h1></div>
+  <p class="lead">Respondes dos preguntas y un sistema experto, con reglas SI… ENTONCES, escoge la película de tu noche.</p>
+  <button class="cta" id="start" type="button">Entrar a la sala</button>
+</header>
+
+<main>
+  <section class="sala" id="sala" aria-live="polite"></section>
+
+  <section class="cartelera" id="cartelera">
+    <h2>Cartelera del sistema</h2>
+    <p class="hint">Estas son las 6 películas que puede recomendar. La que se activa se ilumina.</p>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<footer>
+  Universidad Popular del Cesar · Carlos Mario Sánchez Sánchez, Andrés Felipe Amarís Mora y Luis Rubén Fernández Larios
+</footer>
+
+<script>
+const GENEROS=[["Acción","💥"],["Terror","👻"],["Comedia","😂"],["Romance","💘"],["Ciencia ficción","🚀"]];
+const HISTORIAS=[["Emocionante","⚡"],["Divertida","🎭"],["Romántica","🌹"],["Misteriosa","🕵️"]];
+const REGLAS=[
+ {id:"R1",genero:"Acción",historia:"Emocionante",pelicula:"John Wick",bg:"linear-gradient(160deg,#1a1a2e,#ff2a2a)"},
+ {id:"R2",genero:"Terror",historia:"Misteriosa",pelicula:"El Conjuro",bg:"linear-gradient(160deg,#05070f,#56688f)"},
+ {id:"R3",genero:"Comedia",historia:"Divertida",pelicula:"Son como niños",bg:"linear-gradient(160deg,#f2780c,#f7d23e)"},
+ {id:"R4",genero:"Romance",historia:"Romántica",pelicula:"Diario de una pasión",bg:"linear-gradient(160deg,#8e2a4a,#f4a3b5)"},
+ {id:"R5",genero:"Ciencia ficción",historia:"Emocionante",pelicula:"Interestelar",bg:"linear-gradient(160deg,#050b24,#2f86ff)"},
+ {id:"R6",genero:"Acción",historia:"Misteriosa",pelicula:"Batman",bg:"linear-gradient(160deg,#0b0b0b,#d9b43a)"}
+];
+const hechos={genero:null,historia:null};
+const $=id=>document.getElementById(id);
+const sala=$("sala");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const inferir=()=>REGLAS.find(r=>r.genero===hechos.genero&&r.historia===hechos.historia)||null;
+
+$("grid").innerHTML=REGLAS.map(r=>`<div class="card" id="c-${r.id}"><div class="p" style="background:${r.bg}">${r.pelicula}</div><small>${r.genero} + ${r.historia.toLowerCase()}</small></div>`).join("");
+
+function marcar(regla){
+  const c=$("cartelera");
+  c.classList.toggle("has",!!regla);
+  REGLAS.forEach(r=>$("c-"+r.id).classList.toggle("hit",!!regla&&regla.id===r.id));
+}
+function dots(n){return `<div class="dots" aria-hidden="true"><i class="${n>=1?"on":""}"></i><i class="${n>=2?"on":""}"></i></div>`}
+function tiles(lista,clave){
+  return `<div class="tiles">${lista.map(([t,e])=>`<button class="tile" type="button" data-k="${clave}" data-v="${t}"><span>${e}</span>${t}</button>`).join("")}</div>`;
+}
+function paso1(){
+  marcar(null);
+  sala.innerHTML=`${dots(1)}<h2>¿Qué género de película prefieres?</h2><p class="hint">Elige uno para empezar.</p>${tiles(GENEROS,"genero")}`;
+}
+function paso2(){
+  sala.innerHTML=`${dots(2)}<h2>¿Qué tipo de historia te gustaría ver?</h2><p class="hint">Género elegido: ${hechos.genero}.</p>${tiles(HISTORIAS,"historia")}<button class="back" id="back" type="button">Cambiar el género</button>`;
+}
+function proyectar(){
+  sala.innerHTML=`<div class="proy"><div><div class="count" id="n">3</div><p>Preparando tu función…</p></div></div>`;
+  let n=3;
+  const t=setInterval(()=>{n--; if(n<1){clearInterval(t);resultado();} else $("n").textContent=n;},reduce?1:600);
+}
+function resultado(){
+  const r=inferir();
+  marcar(r);
+  if(r){
+    sala.innerHTML=`<div class="ticket">
+      <div class="poster" style="background:${r.bg}">${r.pelicula}</div>
+      <div class="info">
+        <p class="k">Tu función recomendada</p>
+        <p class="m">${r.pelicula}</p>
+        <p style="margin:0">Se activó la regla ${r.id}: si te gusta ${r.genero.toLowerCase()} y quieres una historia ${r.historia.toLowerCase()}, esta es la película.</p>
+        <div class="chain"><b>${r.genero}</b><em>+</em><b>${r.historia}</b><em>→</em><b>${r.id}</b><em>→</em><b>${r.pelicula}</b></div>
+        <button class="again" id="again" type="button">Elegir otra función</button>
+      </div></div>`;
+  }else{
+    sala.innerHTML=`<div class="empty"><p class="m">Sala vacía</p><p>Ninguna regla cubre ${hechos.genero.toLowerCase()} con una historia ${hechos.historia.toLowerCase()}. Prueba otra combinación.</p><button class="again" id="again" type="button">Intentar de nuevo</button></div>`;
+  }
+  $("again").addEventListener("click",()=>{hechos.genero=hechos.historia=null;paso1();});
+  if(!reduce) sala.scrollIntoView({behavior:"smooth",block:"center"});
+}
+sala.addEventListener("click",e=>{
+  const t=e.target.closest(".tile");
+  if(t){hechos[t.dataset.k]=t.dataset.v; t.dataset.k==="genero"?paso2():proyectar(); return;}
+  if(e.target.id==="back"){hechos.genero=null;paso1();}
+});
+$("start").addEventListener("click",()=>sala.scrollIntoView({behavior:"smooth",block:"center"}));
+paso1();
+</script>
+</body>
+</html>
